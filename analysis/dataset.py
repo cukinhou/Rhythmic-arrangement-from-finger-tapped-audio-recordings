@@ -3,8 +3,10 @@ import pandas as pd
 from essentia.standard import MonoLoader
 from feature_extractor import FeatureExtractor
 
+
 class Dataset(object):
     DEFAULT_PATH = '../Dataset/'
+
     def __init__(self, path=DEFAULT_PATH):
 
         assert os.path.isdir(path + 'EP') and os.path.isdir(path + 'EP'), \
@@ -28,12 +30,12 @@ class Dataset(object):
 
     def save(self, data, path=DEFAULT_PATH, name='default.csv'):
         if name.endswith('.csv'):
-            data.to_csv(path+'/'+name)
+            data.to_csv(path+'/'+name, index_label='name')
         elif name.endswith('.json'):
             data.to_json(path+'/'+name)
         elif name.endswith('.arff'):
-            pass
+            print 'Currently you cannot save ARFF files'
 
 if __name__ == '__main__':
     data = Dataset()
-    data.save(data.generate(), name='prueba2.csv')
+    data.save(data.generate())

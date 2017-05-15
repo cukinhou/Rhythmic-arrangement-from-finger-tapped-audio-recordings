@@ -34,13 +34,22 @@ low_level_keys = [
     'zerocrossingrate',
     'inharmonicity',
     'tristimulus_1', 'tristimulus_2', 'tristimulus_3',
-    'oddtoevenharmonicenergyratio'
+    'oddtoevenharmonicenergyratio',
+    'dissonance',
+    'sccoeff_1',
+    'sccoeff_2',
+    'sccoeff_3',
+    'sccoeff_4',
+    'sccoeff_5',
+    'sccoeff_6',
+    'scvalley_1',
+    'scvalley_2',
+    'scvalley_3',
+    'scvalley_4',
+    'scvalley_5',
+    'scvalley_6',
+    'spectral_centroid',
+    'spectral_kurtosis',
+    'spectral_skewness',
+    'spectral_spread'
 ]
-#     'dissonance',
-#     'sccoeffs',
-#     'scvalleys'
-#     'spectral_centroid',
-#     'spectral_kurtosis',
-#     'spectral_skewness',
-#     'spectral_spread'
-# ]

@@ -39,21 +39,22 @@ class FeatureExtractor(object):
         features = es.LowLevelSpectralExtractor(
             frameSize=self.frame_size, hopSize=self.hop_size, sampleRate=self.sr
         )(audio)
+        eqLoud_feats = es.LowLevelSpectralEqloudExtractor(
+            frameSize=self.frame_size, hopSize=self.hop_size
+        )(es.EqualLoudness()(audio))
 
+        features = features + eqLoud_feats
         out_data = pd.DataFrame(columns=low_level_keys)
-
         onset_start_times, onset_end_times = self.onset_detector(audio)
 
         n_feat = 0
         for feature in features:
             if any(isinstance(f, np.ndarray) for f in feature):
                 for i in feature.T:
-
                     framed_feature = self.frame_feature(i, onset_start_times, onset_end_times, 1./self.hop_size)
                     out_data[low_level_keys[n_feat]] = framed_feature / max(framed_feature)
                     n_feat += 1
             else:
-
                 framed_feature = self.frame_feature(feature, onset_start_times, onset_end_times, 1./self.hop_size)
                 out_data[low_level_keys[n_feat]] = framed_feature / max(framed_feature)
                 n_feat += 1
